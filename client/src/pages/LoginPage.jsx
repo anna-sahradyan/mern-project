@@ -8,8 +8,8 @@ export const LoginPage = () => {
                 <Wrapper>
                     <Title>CREATE AN ACCOUNT</Title>
                     <Form onSubmit={(e) => e.preventDefault()}>
-                        <Input placeholder={'username'}/>
-                        <Input placeholder={'password'}/>
+                        <Input placeholder={'username'} type={"text"}/>
+                        <Input placeholder={'password'} type={"password"}/>
                         <Agreement>
                             By creating an account , I consent to the processing of my data in accordance with the <b>PRIVACY
                             POLICY</b>
