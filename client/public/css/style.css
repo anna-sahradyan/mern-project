@@ -15,7 +15,9 @@ a {
 body {
     position: relative;
     min-height: 100%;
-    background: #0f171e;
+    background:-webkit-linear-gradient(to right,#243855,#243B55,#141E30) ;
+    background:linear-gradient(to right,#243855,#243B55,#141E30);
+
 
 
 }

@@ -21,10 +21,12 @@ export const Left = styled.div`
 `;
 export const Language = styled.span`
   font-size: 14px;
-  padding: 15px 20px;
+  padding: 13px 20px;
   background-color: teal;
   color: white;
   cursor: pointer;
+  border-radius: 5px;
+  margin-top: -12px;
 
 `;
 export const Right = styled.div`
@@ -36,8 +38,8 @@ export const Center = styled.div`
   flex: 1;
   display: flex;
   align-items: center;
- 
-  
+
+
 `;
 export const SearchContainer = styled.div`
   border: 0.5px solid lightgrey;
@@ -68,11 +70,13 @@ export const MenuItem = styled.div`
   color: teal;
   font-weight: bold;
 
+
 `;
 export const Link = styled.a`
   margin: 5px 0;
   font-size: 12px;
   cursor: pointer;
+  text-decoration: none;
 
 `;
 export const Button = styled.button`
@@ -84,4 +88,5 @@ export const Button = styled.button`
   cursor: pointer;
   font-weight: 500;
   margin-bottom: 10px;
+  border-radius: 5px;
 `;

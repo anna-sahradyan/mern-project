@@ -22,9 +22,9 @@ export const Navbar = () => {
                     </Left>
 
                     <Center>
-                        <Link>
+                        <Link href={"/login"}>
 
-                            <MenuItem>home</MenuItem>
+                            <MenuItem>Home</MenuItem>
                         </Link>
                         <Link>
                             <MenuItem>My Posts </MenuItem></Link>
