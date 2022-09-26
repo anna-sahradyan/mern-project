@@ -3,30 +3,29 @@ import {createAsyncThunk} from "@reduxjs/toolkit";
 import axios from "../utils/axios";
 
 export const registerUser = createAsyncThunk(
-    "auth/registerUser",
-    async (username, password) => {
+    'auth/registerUser',
+    async ({ username, password }) => {
         try {
-            const {data} = await axios.post("/auth/register", {
+            const { data } = await axios.post('/auth/register', {
                 username,
-                password
-            });
+                password,
+            })
             if (data.token) {
-                window.localStorage.setItem("token", data.token);
-                return data;
+                window.localStorage.setItem('token', data.token)
             }
-        } catch (err) {
-
-            console.log(err)
+            return data
+        } catch (error) {
+            console.log(error)
         }
     },
-);
+)
 const authSlice = createSlice({
     name: "auth",
     initialState: {
         user: null,
         token: null,
-        isLoading: false,
         status: null,
+        isLoading: false,
 
     },
     reducers: {},

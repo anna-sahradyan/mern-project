@@ -1,19 +1,26 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import {Agreement, Button, Container, Form, Input, Link, Title, Wrapper} from "../styledcomponents/registerStyled";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {registerUser} from "../redux/authSlice";
+import {toast} from "react-toastify";
 
 export const RegisterPage = () => {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const dispatch = useDispatch();
+    const {status} = useSelector(state => state.auth);
+    useEffect(() => {
+        if(status)
+        {
+            toast(status);
+        }
+    }, [status]);
     const handleSubmit = () => {
         try {
             dispatch(registerUser({username, password}));
-            setPassword("")
-            setUsername("")
+            setPassword("");
+            setUsername("");
         } catch (err) {
-
             console.log(err)
         }
     }

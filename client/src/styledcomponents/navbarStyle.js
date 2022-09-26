@@ -69,6 +69,7 @@ export const MenuItem = styled.div`
   margin-left: 25px;
   color: teal;
   font-weight: bold;
+  //color: ${props => props.type === "filled" ? "teal" : "transparent"}
 
 
 `;
@@ -77,12 +78,24 @@ export const Link = styled.a`
   font-size: 12px;
   cursor: pointer;
   text-decoration: none;
+ 
 
 `;
 export const Button = styled.button`
   width: 40%;
   border: none;
-  padding: 15px 20px;
+  padding: 15px 15px;
+  background-color: teal;
+  color: white;
+  cursor: pointer;
+  font-weight: 500;
+  margin-bottom: 10px;
+  border-radius: 5px;
+`;
+export const Span = styled.span`
+  width: 40%;
+  border: none;
+  padding: 15px 15px;
   background-color: teal;
   color: white;
   cursor: pointer;

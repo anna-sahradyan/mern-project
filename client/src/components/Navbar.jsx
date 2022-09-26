@@ -8,11 +8,13 @@ import {
     Center,
     MenuItem,
     Link,
-    Button
+    Button,
+    Span
 } from "../styledcomponents/navbarStyle";
 
 
 export const Navbar = () => {
+    const isAuth = false;
     return (
         <>
             <Container>
@@ -20,22 +22,22 @@ export const Navbar = () => {
                     <Left>
                         <Language>En</Language>
                     </Left>
+                    {isAuth &&
+                        <Center>
 
-                    <Center>
-                        <Link href={"/login"}>
+                            <Link href={"/login"}><MenuItem>Home</MenuItem></Link>
+                            <Link href={"/"}><MenuItem>My Posts </MenuItem></Link>
+                            <Link href={"/"}><MenuItem>Add Posts</MenuItem></Link>
 
-                            <MenuItem>Home</MenuItem>
-                        </Link>
-                        <Link>
-                            <MenuItem>My Posts </MenuItem></Link>
-                        <Link><MenuItem>
-                            Add Posts
-                        </MenuItem> </Link>
 
-                    </Center>
-                    <Right>
-                       <Button>Come In</Button>
-                    </Right>
+                        </Center>
+                    }
+                      <Right> {isAuth ?
+                          <Button>Sign Up</Button>
+                          : <Link href={"/login"}> <Span>Sign In</Span></Link>
+                      }</Right>
+
+
                 </Wrapper>
             </Container>
         </>

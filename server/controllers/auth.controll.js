@@ -2,40 +2,47 @@ import User from "../models/User.js";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 //!REGISTER
+
 export const register = async (req, res) => {
     try {
-        const {username, password} = req.body;
-        const isUsed = await User.findOne({username})
+        const { username, password } = req.body;
+
+        const isUsed = await User.findOne({ username });
+
         if (isUsed) {
-            return res.status(400).json({message: `User with username ${username} already exist`})
+            return res.status(400).json({
+                message: `User with username ${username} already exist`,
+            })
         }
-        const salt = bcrypt.genSaltSync(8);
+
+        const salt = bcrypt.genSaltSync(10);
         const hash = bcrypt.hashSync(password, salt);
+
         const newUser = new User({
             username,
             password: hash,
-        })
-        const token = jwt.sign({
+        });
+
+        const token = jwt.sign(
+            {
                 id: newUser._id,
+            },
+            process.env.JWT_SECRET,
+            { expiresIn: '30d' },
+        )
 
-            }, process.env.JWT_SEC,
-            {expiresIn: "30d"})
-        res.json({
-            user,
-            token,
-
-        })
         await newUser.save();
-        return res.status(200).json({
+
+        res.json({
             newUser,
-            message: `User was created`
-        })
-
-    } catch (err) {
-
-        console.log(err)
+            token,
+            message: `User was created`,
+        });
+    } catch (error) {
+        res.send({ message: 'Server error' });
     }
-}
+};
+
 //!LOGIN
 export const login = async (req, res) => {
     try {

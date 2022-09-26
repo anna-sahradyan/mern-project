@@ -8,11 +8,13 @@ import {RegisterPage} from "./pages/RegisterPage";
 import {LoginPage} from "./pages/LoginPage";
 import {EditPostPage} from "./pages/EditPostPage";
 import {Routes,Route} from "react-router-dom";
-
+import {ToastContainer} from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 const App = () => {
     return (
         <>
             <Layout>
+                <ToastContainer position={"bottom-center"}/>
                 <Routes>
                     <Route path={"/"} element={<MainPage/>}/>
                     <Route path={"posts"} element={<PostsPage/>}/>
@@ -23,6 +25,7 @@ const App = () => {
                     <Route path={"login"} element={<LoginPage/>}/>
 
                 </Routes>
+
             </Layout>
         </>
     );

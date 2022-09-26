@@ -14,7 +14,7 @@ export const LoginPage = () => {
                             By creating an account , I consent to the processing of my data in accordance with the <b>PRIVACY
                             POLICY</b>
                         </Agreement>
-                        <Button>CREATE</Button>
+                        <Button type={"submit"}>LOG IN</Button>
                         <Link href={"/register"}>Dont have an account?
                         </Link>
 
