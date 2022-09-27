@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
 import {Agreement, Button, Container, Form, Input, Link, Title, Wrapper} from "../styledcomponents/registerStyled";
 import {useDispatch, useSelector} from "react-redux";
-import {registerUser} from "../redux/authSlice";
+import {registerUser} from "../redux/auth/authSlice";
 import {toast} from "react-toastify";
 
 export const RegisterPage = () => {
