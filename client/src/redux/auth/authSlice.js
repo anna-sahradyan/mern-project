@@ -1,6 +1,6 @@
 import {createSlice} from "@reduxjs/toolkit";
 import {createAsyncThunk} from "@reduxjs/toolkit";
-import axios from "../../utils/axios";
+import  axios from "../../api/axios";
 
 export const registerUser = createAsyncThunk(
     'auth/registerUser',
@@ -35,7 +35,15 @@ export const loginUser = createAsyncThunk(
             console.log(error)
         }
     },
-)
+);
+export const getMe = createAsyncThunk('auth/getMe',async () => {
+    try {
+        const { data } = await axios.get('/auth/getme')
+        return data
+    } catch (error) {
+        console.log(error)
+    }
+})
 const authSlice = createSlice({
     name: "auth",
     initialState: {
@@ -45,7 +53,14 @@ const authSlice = createSlice({
         isLoading: false,
 
     },
-    reducers: {},
+    reducers: {
+        logout: (state) => {
+            state.user = null
+            state.token = null
+            state.isLoading = false
+            state.status = null
+        },
+    },
     extraReducers: {
         [registerUser.pending]: (state) => {
             state.isLoading = true;
@@ -57,7 +72,7 @@ const authSlice = createSlice({
             state.user = action.payload.user;
             state.token = action.payload.token;
         },
-        [registerUser.rejectWithValue]: (state, action) => {
+        [registerUser.rejected]: (state, action) => {
             state.status = action.payload.message;
             state.isLoading = false;
         },
@@ -72,7 +87,21 @@ const authSlice = createSlice({
             state.user = action.payload.user
             state.token = action.payload.token
         },
-        [loginUser.rejectWithValue]: (state, action) => {
+        [loginUser.rejected]: (state, action) => {
+            state.status = action.payload.message
+            state.isLoading = false
+        },
+        [getMe.pending]: (state) => {
+            state.isLoading = true
+            state.status = null
+        },
+        [getMe.fulfilled]: (state, action) => {
+            state.isLoading = false
+            state.status = null
+            state.user = action.payload?.user
+            state.token = action.payload?.token
+        },
+        [getMe.rejected]: (state, action) => {
             state.status = action.payload.message
             state.isLoading = false
         },
@@ -80,4 +109,7 @@ const authSlice = createSlice({
 });
 
 
+export const checkIsAuth = (state) => Boolean(state.auth.token)
+
+export const { logout } = authSlice.actions;
 export default authSlice.reducer;

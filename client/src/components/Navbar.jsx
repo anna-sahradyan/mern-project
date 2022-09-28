@@ -11,10 +11,18 @@ import {
     Button,
     Span
 } from "../styledcomponents/navbarStyle";
-
+import {useDispatch, useSelector} from "react-redux";
+import {checkIsAuth, logout} from "../redux/auth/authSlice";
+import {toast} from "react-toastify";
 
 export const Navbar = () => {
-    const isAuth = false;
+    const isAuth = useSelector(checkIsAuth);
+    const dispatch = useDispatch();
+    const logoutHandler = () => {
+        dispatch(logout());
+        window.localStorage.removeItem("token");
+        toast("You Are Logged Out")
+    }
     return (
         <>
             <Container>
@@ -32,10 +40,10 @@ export const Navbar = () => {
 
                         </Center>
                     }
-                      <Right> {isAuth ?
-                          <Button>Sign Up</Button>
-                          : <Link href={"/login"}> <Span>Sign In</Span></Link>
-                      }</Right>
+                    <Right> {isAuth ?
+                        <Button onClick={logoutHandler}>Go Out</Button>
+                        : <Link href={"/login"}> <Span>Sign In</Span></Link>
+                    }</Right>
 
 
                 </Wrapper>

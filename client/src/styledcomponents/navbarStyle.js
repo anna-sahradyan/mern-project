@@ -82,12 +82,13 @@ export const Link = styled.a`
 
 `;
 export const Button = styled.button`
-  width: 40%;
+  margin: 5px 0;
+  font-size: 12px;
+  cursor: pointer;
   border: none;
   padding: 15px 15px;
   background-color: teal;
   color: white;
-  cursor: pointer;
   font-weight: 500;
   margin-bottom: 10px;
   border-radius: 5px;
