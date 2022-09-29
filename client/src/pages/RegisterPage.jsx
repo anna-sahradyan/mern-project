@@ -1,21 +1,25 @@
 import React, {useEffect, useState} from "react";
 import {Agreement, Button, Container, Form, Input, Link, Title, Wrapper} from "../styledcomponents/registerStyled";
 import {useDispatch, useSelector} from "react-redux";
-import {registerUser} from "../redux/auth/authSlice";
+import {checkIsAuth, registerUser} from "../redux/auth/authSlice";
 import {toast} from "react-toastify";
+import {useNavigate} from "react-router-dom";
 
 export const RegisterPage = () => {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const dispatch = useDispatch();
     const {status} = useSelector(state => state.auth);
+    const isAuth = useSelector(checkIsAuth);
+    const navigate = useNavigate();
     useEffect(() => {
-        if(status)
-        {
+        if (status) {
             toast(status);
         }
-    }, [status]);
+        if (isAuth) navigate("/")
+    }, [status,isAuth,navigate]);
     const handleSubmit = () => {
+
         try {
             dispatch(registerUser({username, password}));
             setPassword("");

@@ -11,10 +11,3 @@ import axios from 'axios';
  })
 
 export default instance;
-// const url = `http://localhost:5000/api`;
-// export const instance = () => axios.get(url);
-// instance.interceptors.request.use((config) => {
-//      config.headers.Authorization = window.localStorage.getItem('token')
-//
-//      return config
-//  })

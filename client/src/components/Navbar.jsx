@@ -40,9 +40,8 @@ export const Navbar = () => {
 
                         </Center>
                     }
-                    <Right> {isAuth ?
-                        <Button onClick={logoutHandler}>Go Out</Button>
-                        : <Link href={"/login"}> <Span>Sign In</Span></Link>
+                    <Right> {isAuth ? (<Button onClick={logoutHandler}>Go Out</Button>) : (
+                        <Link href={"/login"}> <Span>Sign In</Span></Link>)
                     }</Right>
 
 

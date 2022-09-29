@@ -39,7 +39,7 @@ export const register = async (req, res) => {
             message: `User was created`,
         });
     } catch (error) {
-        res.send({ message: 'Server error' });
+        res.json({ message: 'Server error' });
     }
 };
 
